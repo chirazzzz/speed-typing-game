@@ -1,41 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
-.App {
+html {
+  /* Colors */
+  --primary-clr: #31986a;
+  --dark-clr: #0b0d17;
+
+  /* Fonts */
+  --fs-title: 2.75rem;
+  --fs-word-count: 2.25rem;
+  --fs-reg: 1.6rem;
+
+  --ff-reg: "VT323", monospace;
+  --fw-reg: 400;
+  --fw-bold: 700;
+
+  /* Spacing */
+  --padding-large: 2em;
+  --padding-small: 1em;
+  --textarea-height: 250px;
+}
+
+@media (min-width: 700px) {
+  html {
+    --fs-title: 3.5rem;
+    --fs-word-count: 2.75rem;
+    --fs-reg: 2rem;
+    --textarea-height: 200px;
+  }
+}
+
+html,
+body {
+  background: var(--dark-clr);
+  color: var(--primary-clr);
+  margin: 0;
+  padding: 0;
+  padding-top: var(--padding-small);
+  font-family: var(--ff-reg);
+  font-weight: var(--fw-reg);
   text-align: center;
-  font-family: 'VT323', monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Typography */
+
+h1 {
+  font-size: var(--fs-title);
+  margin-top: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+  font-size: var(--fs-word-count);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+textarea,
+button,
+h4 {
+  margin: 0.5em 0;
+  font-family: var(--ff-reg);
+  font-size: var(--fs-reg);
 }
 
-.App-link {
-  color: #61dafb;
+button {
+  font-weight: var(--fw-bold);
+  display: block;
+  margin: 0 auto;
+  border: none;
+  background: #fff;
+  background: var(--primary-clr);
+  padding: 0.5em var(--padding-small);
+  text-transform: uppercase;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+textarea {
+  font-family: var(--ff-reg);
+  font-size: var(--fs-reg);
+  border: 3px solid var(--dark-clr);
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  outline: none;
+  height: var(--textarea-height);
+  background: var(--primary-clr);
+  padding: 10px;
 }
+
