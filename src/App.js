@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [typedText, setTypedText] = useState("");
   const [wordCount, setWordCount] = useState(0);
+  const [isTimeRunning, setIsTimeRunning] = useState(false)
+  const [timeRemaining, setTimeRemaining] = useState(15);
 
   function handleChange(event) {
     const { value } = event.target;
@@ -22,12 +24,27 @@ function App() {
     }
   }
 
+  function handleStartTimer() {
+    setIsTimeRunning(!isTimeRunning)
+  }
+
+  useEffect(() => {
+    if(timeRemaining > 0 && isTimeRunning) {
+      setTimeout(() => {
+        setTimeRemaining(prevtime => prevtime - 1)
+      }, 1000)
+    } else if(timeRemaining === 0) {
+      countWords(typedText)
+      setIsTimeRunning(!isTimeRunning)
+    }
+  }, [isTimeRunning, timeRemaining])
+
   return (
     <div>
       <h1>Speed Typing Game</h1>
       <textarea onChange={handleChange} value={typedText} />
-      <h4>Time reminaing: ???</h4>
-      <button onClick={() => countWords(typedText)}>Start</button>
+      <h4>Time reminaing: {timeRemaining}</h4>
+      <button onClick={() => handleStartTimer()}>Start</button>
       <h1>Word count: {wordCount}</h1>
     </div>
   );
