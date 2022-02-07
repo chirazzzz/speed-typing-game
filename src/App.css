@@ -2,7 +2,7 @@
 
 html {
   /* Colors */
-  --primary-clr: rgb(49, 150, 105);
+  --primary-clr: hsl(153, 51%, 39%);
   --dark-clr: rgb(12, 14, 24);
 
   /* Fonts */
@@ -69,8 +69,12 @@ button {
   background: var(--primary-clr);
   padding: 0.5em var(--padding-small);
   text-transform: uppercase;
+  cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
 
 textarea {
   font-family: var(--ff-reg);
@@ -87,4 +91,8 @@ textarea {
 
 textarea:focus {
   border: 3px solid firebrick;
+}
+
+textarea:disabled {
+  background-color: #a5a2a2;
 }
