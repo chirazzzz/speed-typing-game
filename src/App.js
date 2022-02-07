@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
   const [wordCount, setWordCount] = useState(0);
   const [isTimeRunning, setIsTimeRunning] = useState(false)
   const [timeRemaining, setTimeRemaining] = useState(TIME_OF_GAME);
-  const [disableBtn, setDisableBtn] = useState(false);
+  const textareaRef = useRef(null)
 
   function handleChange(event) {
     const { value } = event.target;
@@ -27,18 +27,18 @@ function App() {
     }
   }
 
-  function handleStartTimer() {
+  function handleGameStart() {
+    textareaRef.current.disabled = false
+    textareaRef.current.focus()
     setIsTimeRunning(true)
     setTypedText("")
-    setWordCount(0)
+    // setWordCount(0) - only use if you want to reset the high score
     setTimeRemaining(TIME_OF_GAME)
-    setDisableBtn(true)
   }
 
-  function handleEndTimer() {
+  function handleGameEnd() {
     countWords(typedText)
     setIsTimeRunning(false)
-    setDisableBtn(false)
   }
 
   useEffect(() => {
@@ -47,16 +47,16 @@ function App() {
         setTimeRemaining(prevtime => prevtime - 1)
       }, 1000)
     } else if(timeRemaining === 0) {
-      handleEndTimer()
+      handleGameEnd()
     }
   }, [isTimeRunning, timeRemaining])
 
   return (
     <div>
       <h1>Speed Typing Game</h1>
-      <textarea onChange={handleChange} value={typedText} />
+      <textarea ref={textareaRef} disabled={!isTimeRunning} onChange={handleChange} value={typedText} />
       <h4>Time reminaing: {timeRemaining}</h4>
-      <button disabled={disableBtn} onClick={handleStartTimer}>Start</button>
+      <button disabled={isTimeRunning} onClick={handleGameStart}>Start</button>
       <h1>Word count: {wordCount}</h1>
     </div>
   );
