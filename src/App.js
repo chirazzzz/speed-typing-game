@@ -49,6 +49,7 @@ function App() {
     } else if(timeRemaining === 0) {
       handleGameEnd()
     }
+  // eslint-disable-next-line    
   }, [isTimeRunning, timeRemaining])
 
   return (
