@@ -1,8 +1,27 @@
-# Getting Started with Create React App
+# Chirag Mehta - Speed Typing Game
+
+This is game I bulit while following a tutorial from [Bob Ziroll](https://scrimba.com/teachers/bobziroll) on [Scrimba](https://scrimba.com/). I am currently enrolled at [The School of Code](https://www.schoolofcode.co.uk/) and have bulit this game to improve my knowledge of React hooks.
+
+## Table of contents
+
+- [Running Locally](#running-locally)
+  - [React Scripts](#react-scripts)
+- [Overview](#overview)
+  - [My Goals](#my-goals)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+
+## Running Locally
+
+### React Scripts
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
 
 In the project directory, you can run:
 
@@ -27,44 +46,107 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Overview
 
-### `npm run eject`
+### My goals
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Players should be able to:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Play the game on mobile, tablet and desktop devices
+- Press start button and immediately begin typing
+- Have their high score tracked during each play session
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Players should not be able to:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Type anything in the textarea until the game starts
+- Create new lines and have these counted as valid words
 
-## Learn More
+### Screenshot
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Screenshot of Speed Typing Game](img/Screenshot_SpeedTypingGame.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Links
 
-### Code Splitting
+- Live Site URL: [speed-type-games.netlify.app](https://speed-type-games.netlify.app/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## My process
 
-### Analyzing the Bundle Size
+### Built with
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Semantic HTML5 markup
+- CSS custom properties
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
 
-### Making a Progressive Web App
+### What I learned
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+One of my major learnings was how to use custom CSS properties. I love how sementic variable names make CSS more readable. Although this is a tiny CSS file I can really see the benefit this would have in much larger project for reducing bugs and having a single source of all your major CSS properties. Example code below:
 
-### Advanced Configuration
+```css
+html {
+  /* Colors */
+  --primary-clr: hsl(153, 51%, 39%);
+  --dark-clr: rgb(12, 14, 24);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  /* Fonts */
+  --fs-title: 2.75rem;
+  --fs-word-count: 2.25rem;
+  --fs-reg: 1.6rem;
 
-### Deployment
+  --ff-reg: "VT323", monospace;
+  --fw-reg: 400;
+  --fw-bold: 700;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  /* Spacing */
+  --padding-large: 2em;
+  --padding-small: 1em;
+  --textarea-height: 250px;
+}
+```
 
-### `npm run build` fails to minify
+Also pleased with the countWords function that solves quite a few obvious bugs in the game. There's regex which reduces multiple spaces to a single space. I learned of the .trim() method which takes away whitespaces at beginning or end of string.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+setWordCount is a useState function which utilises .split() and .length to count the words.
+
+```js
+function countWords(str) {
+  str = str.replace(/[ ]{2,}/gi, " ");
+  str = str.trim();
+  // split returns array with space between which we then .length
+  setWordCount(str.split(" ").length);
+  if (str === "") {
+    setWordCount(0);
+  }
+}
+```
+
+The other major thing was React hooks, especially useEffect and useRef. Was intresting figuring out the game logic on paper before coding and thinking about when useEffect would render. Hit a snag deploying to Netlify so needed to include 'eslint-disable-next-line' to make it play nice.
+
+```react
+useEffect(() => {
+    if(timeRemaining > 0 && isTimeRunning) {
+      setTimeout(() => {
+        setTimeRemaining(prevtime => prevtime - 1)
+      }, 1000)
+    } else if(timeRemaining === 0) {
+      handleGameEnd()
+    }
+  // eslint-disable-next-line
+  }, [isTimeRunning, timeRemaining])
+```
+
+### Continued development
+
+Currently, the game counts any words you type if they are spelt correctly or not. This means someone could type anything with some spaces and get a high score. It would be great to implement a spellschecker so only correctly spelt words get counted towards your high score.
+
+I'm sure there's an npm module that would do this so I might revisit at some point.
+
+### Useful resources
+
+- [Scrimba React Hooks - video playlist](https://scrimba.com/playlist/pMvMEuD) - I followed along to this guide from Bob Ziroll however I coded everything myself and checked it worked. The planning was done by following his guidance though. Couldn't recommend Scrimba or Bob's videos enough. Really clear, concise explanations of hooks and why bugs are happening inside React.
+- [React.useEffect() Explanation](https://dmitripavlutin.com/react-useeffect-explanation/) - I needed further guidance on useEffect and this explanation finally helped me crack it!
+
+## Author
+
+- Website - [My portfolio site](https://chirag-designs-f2wb3.ondigitalocean.app/)
+- LinkedIn - [chiragmehtauk](https://www.linkedin.com/in/chiragmehtauk/)

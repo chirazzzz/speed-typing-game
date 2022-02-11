@@ -15,9 +15,9 @@ function useGameLogic() {
   }
 
   function countWords(str) {
-    // regex to rreduce multiple spaces to a single space.
+    // regex to reduce multiple spaces to a single space.
     str = str.replace(/[ ]{2,}/gi, " ");
-    // trim() will take away any spaces at start or end of strinf
+    // trim() will take away any spaces at start or end of string
     str = str.trim();
     // split returns array with space between which we then .length
     setWordCount(str.split(" ").length);
