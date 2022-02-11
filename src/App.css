@@ -2,8 +2,8 @@
 
 html {
   /* Colors */
-  --primary-clr: hsl(153, 51%, 39%);
-  --dark-clr: rgb(12, 14, 24);
+  --primary-clr: hsl(153, 50%, 42%);
+  --dark-clr: rgb(8, 9, 15);
 
   /* Fonts */
   --fs-title: 2.75rem;

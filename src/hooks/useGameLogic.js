@@ -1,7 +1,7 @@
 import {useState, useEffect, useRef} from 'react'
 
 function useGameLogic() {
-  const TIME_OF_GAME = 15
+  const TIME_OF_GAME = 10
 
   const [typedText, setTypedText] = useState("");
   const [wordCount, setWordCount] = useState(0);
