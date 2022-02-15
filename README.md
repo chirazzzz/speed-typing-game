@@ -19,6 +19,8 @@ This is game I bulit while following a tutorial from [Bob Ziroll](https://scrimb
 
 ## Running Locally
 
+After you've cloned the repo you'll need to run `npm install` to get all dependancies needed to run the project locally.
+
 ### React Scripts
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
