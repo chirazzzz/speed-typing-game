@@ -1,6 +1,6 @@
 # Chirag Mehta - Speed Typing Game
 
-This is game I bulit while following a tutorial from [Bob Ziroll](https://scrimba.com/teachers/bobziroll) on [Scrimba](https://scrimba.com/). I am currently enrolled at [The School of Code](https://www.schoolofcode.co.uk/) and have bulit this game to improve my knowledge of React hooks.
+This is game I built while following a tutorial from [Bob Ziroll](https://scrimba.com/teachers/bobziroll) on [Scrimba](https://scrimba.com/). I am currently enrolled at [The School of Code](https://www.schoolofcode.co.uk/) and have coded this game to improve my knowledge of React hooks.
 
 ## Table of contents
 
@@ -82,7 +82,7 @@ Players should not be able to:
 
 ### What I learned
 
-One of my major learnings was how to use custom CSS properties. I love how sementic variable names make CSS more readable. Although this is a tiny CSS file I can really see the benefit this would have in much larger project for reducing bugs and having a single source of all your major CSS properties. Example code below:
+One of my major learnings was how to use custom CSS properties. I love how semantic variable names make CSS more readable. Although this is a tiny CSS file I can really see the benefit this would have in much larger project for reducing bugs and having a single source of all your major CSS properties. Example code below:
 
 ```css
 html {
@@ -122,7 +122,7 @@ function countWords(str) {
 }
 ```
 
-The other major thing was React hooks, especially useEffect and useRef. Was intresting figuring out the game logic on paper before coding and thinking about when useEffect would render. Hit a snag deploying to Netlify so needed to include 'eslint-disable-next-line' to make it play nice.
+The other major thing was React hooks, especially useEffect and useRef. It was interesting figuring out the game logic on paper before coding and thinking about when useEffect would render. Hit a snag deploying to Netlify so needed to include 'eslint-disable-next-line' to make it play nice.
 
 ```react
 useEffect(() => {
@@ -139,7 +139,7 @@ useEffect(() => {
 
 ### Continued development
 
-Currently, the game counts any words you type if they are spelt correctly or not. This means someone could type anything with some spaces and get a high score. It would be great to implement a spellschecker so only correctly spelt words get counted towards your high score.
+Currently, the game counts any words you type if they are spelt correctly or not. This means someone could type anything with some spaces and get a high score. It would be great to implement a spellchecker so only correctly spelt words get counted towards your high score.
 
 I'm sure there's an npm module that would do this so I might revisit at some point.
 
