@@ -151,4 +151,5 @@ I'm sure there's an npm module that would do this so I might revisit at some poi
 ## Author
 
 - Website - [My portfolio site](https://chirag-designs-f2wb3.ondigitalocean.app/)
-- LinkedIn - [chiragmehtauk](https://www.linkedin.com/in/chiragmehtauk/)
+- LinkedIn - [@chiragmehtauk](https://www.linkedin.com/in/chiragmehtauk/)
+- Twitter - [@chirag_uk](https://twitter.com/chirag_uk)
